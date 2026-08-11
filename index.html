@@ -23,7 +23,7 @@
             padding: 20px;
         }
 
-        /* Card Container */
+        /* Card Container - Original Style */
         .card {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
@@ -74,14 +74,14 @@
         /* Text Styles */
         h1 {
             font-family: 'Orbitron', sans-serif;
-            color: #fff;
+            color: #00ff00; /* আকাশি রং */
             font-size: 22px;
             letter-spacing: 2px;
             margin-bottom: 5px;
         }
 
         p.bio {
-            color: #ccc;
+            color: #ff0000; /* লাল রং */
             font-size: 14px;
             margin-bottom: 25px;
         }
@@ -98,13 +98,41 @@
             align-items: center;
             justify-content: center;
             background: rgba(255, 255, 255, 0.05);
-            color: #fff;
+            color: #00ff00; /* সবুজ রং */
             text-decoration: none;
             padding: 12px;
             border-radius: 12px;
             font-weight: 500;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
             transition: 0.3s;
+        }
+
+        /* Multi-color Animated Border */
+        .link-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 12px;
+            padding: 2px;
+            background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 300% 300%;
+            animation: borderColorMove 4s linear infinite;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: -1;
+        }
+
+        @keyframes borderColorMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 300% 50%;
+            }
         }
 
         .link-item:hover {
@@ -112,6 +140,11 @@
             color: #000;
             box-shadow: 0 0 20px #00bcd4;
             transform: scale(1.02);
+        }
+
+        .link-item:hover::before {
+            animation: none;
+            background: #00bcd4;
         }
 
         /* Social Icons Row */
@@ -135,7 +168,7 @@
 
         footer {
             margin-top: 30px;
-            color: rgba(255, 255, 255, 0.4);
+            color: #00ff00; /* সবুজ রং */
             font-size: 12px;
             letter-spacing: 1px;
         }
