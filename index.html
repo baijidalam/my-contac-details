@@ -1,213 +1,198 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BAIJID ALAM 🧑‍💻 | OFFICIAL CARD</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <title>BAIJID ALAM Profile Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Poppins', sans-serif;
+            background: #000;
             min-height: 100vh;
+            overflow: hidden;
+        }
+        #matrix-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: #000;
+        }
+        #baijid-modal {
             display: flex;
+            position: fixed;
+            inset: 0;
+            background: transparent;
+            z-index: 10;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
-
-        /* Card Container - Original Style */
-        .card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+        #baijid-modal .card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.18);
             width: 100%;
             max-width: 400px;
             padding: 40px 20px;
-            border-radius: 20px;
+            border-radius: 24px;
             text-align: center;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-            transition: 0.5s;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            border: 1px solid #00bcd4;
-        }
-
-        /* Profile Image */
-        .profile-box {
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
             position: relative;
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 20px;
+            z-index: 20;
+            animation: baijidCardIn 0.4s ease;
         }
-
-        .profile-box img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #00bcd4;
-            padding: 5px;
+        @keyframes baijidCardIn {
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-
-        .online-status {
-            position: absolute;
-            bottom: 10px;
-            right: 5px;
-            width: 20px;
-            height: 20px;
-            background: #00ff00;
-            border: 3px solid #1a1a1a;
-            border-radius: 50%;
-            box-shadow: 0 0 10px #00ff00;
+        #baijid-modal .baijid-close {
+            position: absolute; top: 12px; right: 12px;
+            width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            background: transparent; border: none; color: #00ff88;
+            font-size: 26px; cursor: pointer; transition: 0.3s;
         }
-
-        /* Text Styles */
-        h1 {
-            font-family: 'Orbitron', sans-serif;
-            color: #00ff00; 
-            font-size: 22px;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
+        #baijid-modal .baijid-close:hover { color: #ff4444; transform: rotate(90deg); }
+        #baijid-modal .profile-box {
+            position: relative; width: 120px; height: 120px; margin: 0 auto 20px;
         }
-
-        p.bio {
-            color: #ff0000;
-            font-size: 14px;
-            margin-bottom: 25px;
+        #baijid-modal .profile-box img {
+            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
+            border: 3px solid rgba(0,188,212,0.6); padding: 4px;
+            box-shadow: 0 0 20px rgba(0,255,136,0.3);
         }
-
-        /* Buttons Grid */
-        .links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+        #baijid-modal .online-status {
+            position: absolute; bottom: 12px; right: 4px;
+            width: 18px; height: 18px; background: #00ff88;
+            border: 3px solid rgba(0,0,0,0.6); border-radius: 50%;
+            box-shadow: 0 0 12px #00ff88;
         }
-
-        .link-item {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.05);
-            color: #00ff00; 
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
-            font-weight: 500;
-            position: relative;
-            z-index: 1;
-            transition: 0.3s;
+        #baijid-modal h1 {
+            font-family: 'Orbitron', sans-serif; color: #00ff88;
+            font-size: 22px; letter-spacing: 2px; margin: 0 0 6px;
+            text-shadow: 0 0 12px rgba(0,255,136,0.5);
         }
-
-        /* Multi-color Animated Border */
-        .link-item::before {
+        #baijid-modal p.bio { color: #ff6b6b; font-size: 13px; margin: 0 0 25px; }
+        #baijid-modal .links-container { display: flex; flex-direction: column; gap: 14px; }
+        #baijid-modal .link-item {
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            background: rgba(255,255,255,0.06); color: #00ffcc;
+            text-decoration: none; padding: 13px; border-radius: 14px;
+            font-weight: 500; position: relative; z-index: 1; transition: 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        #baijid-modal .link-item::before {
             content: '';
             position: absolute;
             inset: 0;
-            border-radius: 12px;
-            padding: 2px;
-            background: linear-gradient(90deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            border-radius: 14px;
+            padding: 1.5px;
+            background: linear-gradient(
+                90deg,
+                #ff0000, #ff7300, #fffb00, #48ff00,
+                #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000
+            );
             background-size: 300% 300%;
-            animation: borderColorMove 4s linear infinite;
-            -webkit-mask: 
-                linear-gradient(#fff 0 0) content-box, 
-                linear-gradient(#fff 0 0);
+            animation: baijidBorderMove 4s linear infinite;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
             -webkit-mask-composite: xor;
             mask-composite: exclude;
             z-index: -1;
         }
-
-        @keyframes borderColorMove {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 300% 50%;
-            }
+        @keyframes baijidBorderMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
         }
-
-        .link-item:hover {
-            background: #00bcd4;
-            color: #000;
-            box-shadow: 0 0 20px #00bcd4;
-            transform: scale(1.02);
+        #baijid-modal .link-item:hover {
+            background: rgba(0,255,200,0.15); color: #fff;
+            box-shadow: 0 0 25px rgba(0,255,200,0.3); transform: scale(1.03);
         }
-
-        .link-item:hover::before {
+        #baijid-modal .link-item:hover::before {
             animation: none;
-            background: #00bcd4;
+            background: #00ffcc;
         }
-
-        /* Social Icons Row */
-        .social-icons {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .social-icons a {
-            color: #fff;
-            font-size: 20px;
-            transition: 0.3s;
-        }
-
-        .social-icons a:hover {
-            color: #00bcd4;
-            transform: rotate(360deg);
-        }
-
-        footer {
-            margin-top: 30px;
-            color: #00ff00; 
-            font-size: 12px;
-            letter-spacing: 1px;
-        }
+        #baijid-modal .link-item i { font-size: 18px; }
+        #baijid-modal .social-icons { margin-top: 28px; display: flex; justify-content: center; gap: 28px; }
+        #baijid-modal .social-icons a { color: rgba(255,255,255,0.85); font-size: 22px; transition: 0.35s; }
+        #baijid-modal .social-icons a:hover { color: #00eaff; transform: rotate(360deg) scale(1.15); text-shadow: 0 0 12px #00eaff; }
+        #baijid-modal footer { margin-top: 28px; color: #00ff88; font-size: 12px; letter-spacing: 1px; opacity: 0.85; }
     </style>
 </head>
 <body>
+    <canvas id="matrix-canvas"></canvas>
 
-<div class="card">
-    <div class="profile-box">
-        <img src="https://i.postimg.cc/XYmcnZ1J/baijid-alam.jpg" alt="BAIJID ALAM 🧑‍💻">
-        <div class="online-status"></div>
+    <div id="baijid-modal">
+        <div class="card">
+            <button class="baijid-close" type="button" onclick="document.getElementById('baijid-modal').style.display='none'">&times;</button>
+
+            <div class="profile-box">
+                <img src="https://i.postimg.cc/XYmcnZ1J/baijid-alam.jpg" alt="BAIJID ALAM 🧑‍💻">
+                <div class="online-status"></div>
+            </div>
+
+            <h1>BAIJID ALAM 🧑‍💻</h1>
+            <p class="bio">Digital Expert | DARK CYBER 2.5 TEAM Leader | Cyber Security Enthusiast</p>
+
+            <div class="links-container">
+                <a href="https://t.me/+qPKvzfv0c8BiMDY1" class="link-item" target="_blank" rel="noopener noreferrer">
+                    <span>MESSAGE ON TELEGRAM</span> <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://wa.me/qr/HFIIBHCRUENLE1" class="link-item" target="_blank" rel="noopener noreferrer">
+                    <span>CONTACT VIA WHATSAPP</span> <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:baijidalamallrafi@gmail.com" class="link-item">
+                    <span>SEND AN EMAIL</span> <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://www.facebook.com/share/1La2sKY8hK/" class="link-item" target="_blank" rel="noopener noreferrer">
+                    <span>VISIT MY FB</span> <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+
+            <div class="social-icons">
+                <a href="https://m.me/baijid.alam.all.rafi" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-messenger"></i></a>
+                <a href="https://www.instagram.com/baijidalamallrafi?igsh=MXI4Z3pzaDZrZGRwOQ==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+            </div>
+
+            <footer>MADE BY BAIJID ALAM 🧑‍💻 &copy; 2026</footer>
+        </div>
     </div>
 
-    <h1>BAIJID ALAM 🧑‍💻</h1>
-    <p class="bio">Digital Expert | DARK CYBER 2.5 TEAM Leader | Cyber Security Enthusiast</p>
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    <div class="links-container">
-        <a href="https://t.me/+qPKvzfv0c8BiMDY1" class="link-item">
-            <span>MESSAGE ON TELEGRAM</span>
-        </a>
-        <a href="https://wa.me/qr/HFIIBHCRUENLE1" class="link-item">
-            <span>CONTACT VIA WHATSAPP</span>
-        </a>
-        <a href="mailto:baijidalamallrafi@gmail.com" class="link-item">
-            <span>SEND AN EMAIL</span>
-        </a>
-        <a href="https://www.facebook.com/share/1La2sKY8hK/"  class="link-item">
-            <span>VISIT MY FB</span>
-        </a>
-    </div>
+        const letters = '012346チツテトナニヌネノハヒフヘホマミムABCDEFGHIJSTUVWXYZ';
+        const fontSize = 15;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+        const colors = ['#00ff00', '#00ff41', '#33ff33', '#00cc00', '#39ff14', '#00ff88'];
 
-    <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-github"></i></a>
-    </div>
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.font = fontSize + 'px monospace';
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+                drops[i]++;
+            }
+        }
+        setInterval(drawMatrix, 40);
 
-    <footer>MADE BY BAIJID ALAM 🧑‍💻 &copy; 2026</footer>
-</div>
-
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
